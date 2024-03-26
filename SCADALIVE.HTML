@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCADA LIVE MONITORING</title>
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
-  #center-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-  }
-  .hidden {
-    display: none;
-  }
-  .hide-button {
-    display: none;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCADA LIVE MONITORING</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .hide-button {
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
   <!-- Visible button at the top -->
   <a href="#CEBECOIII">
@@ -37,194 +42,111 @@
     NO EC SELECTED
   </div>
 
-  <!-- CEBECO III section -->
-  <section id="CEBECOIII" class="EC hidden">
+  <!-- Main section for dynamically changing content -->
+  <section id="dynamicContent" class="EC hidden">
     <div class="youtube-wrapper">
       <div class="overlay"></div>
-      <iframe 
-      style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-      src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-      title="YouTube video player" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-    </div>
-  </section>
-
-  <!-- INEC section -->
-  <section id="INEC" class="EC hidden">
-    <div class="youtube-wrapper">
-      <div class="overlay"></div>
-      <iframe 
-        style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-        src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      <iframe id="youtubeIframe" style="position:absolute; top:0; left:0; width:100%; height:100%;"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
     </div>
   </section>
-
-  <!-- MORESCO I section -->
-  <section id="MORESCOI" class="EC hidden">
-    <div class="youtube-wrapper">
-      <div class="overlay"></div>
-      <iframe 
-        style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-        src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-
-  <!-- BENECO section -->
-  <section id="BENECO" class="EC hidden">
-    <div class="youtube-wrapper">
-      <div class="overlay"></div>
-      <iframe 
-        style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-        src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-
-
-  <!-- CASELCO section -->
-  <section id="CASELCO" class="EC hidden">
-    <div class="youtube-wrapper">
-      <div class="overlay"></div>
-      <iframe 
-        style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-        src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-
-    <!-- DIELCO section -->
-    <section id="DIELCO" class="EC hidden">
-        <div class="youtube-wrapper">
-          <div class="overlay"></div>
-          <iframe 
-            style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-            src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
-        </div>
-      </section>
-
-        <!-- FLECO section -->
-  <section id="FLECO" class="EC hidden">
-    <div class="youtube-wrapper">
-      <div class="overlay"></div>
-      <iframe 
-        style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-        src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-
-    <!-- GUIMELCO section -->
-    <section id="GUIMELCO" class="EC hidden">
-        <div class="youtube-wrapper">
-          <div class="overlay"></div>
-          <iframe 
-            style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-            src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
-        </div>
-      </section>
-        <!-- PROSIELCO section -->
-  <section id="PROSIELCO" class="EC hidden">
-    <div class="youtube-wrapper">
-      <div class="overlay"></div>
-      <iframe 
-        style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-        src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-    <!-- PALECO section -->
-    <section id="PALECO" class="EC hidden">
-        <div class="youtube-wrapper">
-          <div class="overlay"></div>
-          <iframe 
-            style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-            src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
-        </div>
-      </section>
-        <!-- CASELCO section -->
-  <section id="CASELCO" class="EC hidden">
-    <div class="youtube-wrapper">
-      <div class="overlay"></div>
-      <iframe 
-        style="position:absolute; top:0; left:0; width:100%; height:100%;" 
-        src="https://www.youtube.com/embed/Jxq12AbN0l8?autoplay=1&mute=1&controls=0&modestbranding=1" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-
-  <!-- Repeat similar sections for DIELCO, FLECO, GUIMELCO, PROSIELCO, and PALECO -->
 
   <script>
     // JavaScript to toggle visibility of the EC sections
-    document.getElementById('toggleButton').addEventListener('click', function() {
-      var ECSections = document.querySelectorAll('.EC');
-      ECSections.forEach(function(section) {
-        section.classList.toggle('hidden');
-      });
-      var centerText = document.getElementById('center-text');
-      centerText.classList.toggle('hidden');
-    });
+    // document.getElementById('toggleButton').addEventListener('click', function () {
+    //   var ECSections = document.querySelectorAll('.EC');
+    //   ECSections.forEach(function (section) {
+    //     section.classList.toggle('hidden');
+    //   });
+    //   var centerText = document.getElementById('center-text');
+    //   centerText.classList.toggle('hidden');
+    // });
 
-    // Check if the URL contains the anchor for any EC section
-    window.addEventListener('DOMContentLoaded', function() {
-      var hash = window.location.hash;
-      if (hash && hash.startsWith('#')) {
-        var ECSection = document.getElementById(hash.substring(1));
-        if (ECSection) {
-          ECSection.classList.remove('hidden');
-          var centerText = document.getElementById('center-text');
-          centerText.classList.add('hidden');
+    // Function to set the YouTube video source dynamically
+    // function setYouTubeSource(videoId) {
+    //   var youtubeIframe = document.getElementById('youtubeIframe');
+    //   if (youtubeIframe) {
+    //     youtubeIframe.src = youtubeUrl;
+    //   }
+    // }
+    // // Check if the URL contains the anchor for any EC section
+    // window.addEventListener('DOMContentLoaded', function () {
+    //   var hash = window.location.hash;
+    //   if (hash && hash.startsWith('#')) {
+    //     var ECSection = document.getElementById(hash.substring(1));
+    //     if (ECSection) {
+    //       ECSection.classList.remove('hidden');
+    //       var centerText = document.getElementById('center-text');
+    //       centerText.classList.add('hidden');
+    //     }
+    //   }
+    // });
+
+    window.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const ecCode = urlParams.get('EC_CODE');
+
+      if (ecCode) {
+        const ecSection = document.getElementById(ecCode);
+        if (ecSection) {
+          ecSection.classList.remove('hidden');
+          const centerText = document.getElementById('center-text');
+          if (centerText) {
+            centerText.classList.add('hidden');
+          }
+          // Call API endpoint with EC_CODE
+          fetchApiData(ecCode);
+        } else {
+          console.error('Element with ID:', ecCode, 'not found');
         }
       }
+
+      const toggleButton = document.getElementById('toggleButton');
+      if (toggleButton) {
+        toggleButton.addEventListener('click', function () {
+          const targetSection = document.getElementById(ecCode); // Assuming element ID matches EC_CODE
+          if (targetSection) {
+            targetSection.classList.toggle('hidden');
+            const centerText = document.getElementById('center-text');
+            if (centerText) {
+              centerText.classList.toggle('hidden');
+            }
+          } else {
+            console.error('Element with ID:', ecCode, 'not found');
+          }
+        });
+      }
     });
+
+    async function fetchApiData(ecCode) {
+      const apiUrl = 'http://localhost:3000/api/get-youtube-url/' + ecCode;
+
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        console.log('API Response:', data);
+
+        // Extract and store YouTube URL from response data
+        let youtubeUrl;
+        if (data && data.YOUTUBE_URL) {
+          youtubeUrl = data.YOUTUBE_URL;
+        } else {
+          console.warn('API response does not contain "YOUTUBE_URL" property');
+        }
+
+        // Use the youtubeUrl variable here (e.g., display the YouTube video)
+        if (youtubeUrl) {
+          console.log('YouTube URL:', youtubeUrl);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
   </script>
 </body>
+
 </html>
