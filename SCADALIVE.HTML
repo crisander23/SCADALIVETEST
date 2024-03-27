@@ -59,6 +59,36 @@
   </section>
 
   <script>
+    // JavaScript to toggle visibility of the EC sections
+    // document.getElementById('toggleButton').addEventListener('click', function () {
+    //   var ECSections = document.querySelectorAll('.EC');
+    //   ECSections.forEach(function (section) {
+    //     section.classList.toggle('hidden');
+    //   });
+    //   var centerText = document.getElementById('center-text');
+    //   centerText.classList.toggle('hidden');
+    // });
+
+    // Function to set the YouTube video source dynamically
+    // function setYouTubeSource(videoId) {
+    //   var youtubeIframe = document.getElementById('youtubeIframe');
+    //   if (youtubeIframe) {
+    //     youtubeIframe.src = youtubeUrl;
+    //   }
+    // }
+    // // Check if the URL contains the anchor for any EC section
+    // window.addEventListener('DOMContentLoaded', function () {
+    //   var hash = window.location.hash;
+    //   if (hash && hash.startsWith('#')) {
+    //     var ECSection = document.getElementById(hash.substring(1));
+    //     if (ECSection) {
+    //       ECSection.classList.remove('hidden');
+    //       var centerText = document.getElementById('center-text');
+    //       centerText.classList.add('hidden');
+    //     }
+    //   }
+    // });
+
     window.addEventListener('DOMContentLoaded', function () {
       const urlParams = new URLSearchParams(window.location.search);
       let ecCode = urlParams.get('EC_CODE');
@@ -100,33 +130,47 @@
       }
     });
 
-
     async function fetchApiData(ecCode) {
+      console.log('Fetching data for EC_CODE:', ecCode);
       const apiUrl = 'http://192.168.1.106:3000/api/get-youtube-url/' + ecCode;
 
       try {
+        console.log('Making API request to:', apiUrl);
         const response = await fetch(apiUrl);
+        console.log('API response received:', response);
+
         const data = await response.json();
         console.log('API Response:', data);
+        console.log('Data type:', typeof data);
 
-        // Extract and store YouTube URL from response data
-        let youtubeUrl;
-        if (data && data.YOUTUBE_URL) {
-          youtubeUrl = data.YOUTUBE_URL;
-          console.log('YouTube URL:', youtubeUrl);
+        // Check if data is an array and not empty
+        if (Array.isArray(data) && data.length > 0) {
+          // Assuming the first element of the array contains the desired data
+          const firstItem = data[0];
+
+          // Check if YOUTUBE_URL property exists in the first item
+          if (firstItem.hasOwnProperty('YOUTUBE_URL')) {
+            const youtubeUrl = firstItem.YOUTUBE_URL;
+            console.log('YouTube URL:', youtubeUrl);
+
+            // Use the youtubeUrl variable here (e.g., display the YouTube video)
+            console.log('Setting YouTube iframe src:', youtubeUrl);
+            const youtubeIframe = document.getElementById('youtubeIframe');
+            if (youtubeIframe) {
+              youtubeIframe.src = youtubeUrl;
+            } else {
+              console.warn('YouTube iframe element not found');
+            }
+          } else {
+            console.warn('YOUTUBE_URL property not found in API response');
+          }
         } else {
-          console.warn('API response does not contain "YOUTUBE_URL" property');
-        }
-
-        // Use the youtubeUrl variable here (e.g., display the YouTube video)
-        if (youtubeUrl) {
-          console.log('YouTube URL:', youtubeUrl);
+          console.warn('Empty or invalid API response');
         }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     }
-
   </script>
 </body>
 
