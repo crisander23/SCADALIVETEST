@@ -10,9 +10,10 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: black; /* Set background color to black */
+      background-color: black;
+      /* Set background color to black */
     }
-  
+
     #center-text {
       position: absolute;
       top: 50%;
@@ -20,18 +21,19 @@
       transform: translate(-50%, -50%);
       text-align: center;
       font-size: 24px;
-      color: white; /* Set text color to white */
+      color: white;
+      /* Set text color to white */
     }
-  
+
     .hidden {
       display: none;
     }
-  
+
     .hide-button {
       display: none;
     }
   </style>
-  
+
 </head>
 
 <body>
@@ -45,8 +47,7 @@
   </div>
 
   <!-- Main section for dynamically changing content -->
- <!-- Main section for dynamically changing content -->
-  <section id="dynamicContent" class="EC hidden">
+  <section id="dynamicContent" class="hidden">
     <div class="youtube-wrapper">
       <div class="overlay"></div>
       <iframe id="youtubeIframe" style="position:absolute; top:0; left:0; width:100%; height:100%;"
@@ -95,6 +96,7 @@
       if (ecCode) {
         const ecSection = document.getElementById(ecCode);
         if (ecSection) {
+          ecSection.id = ecCode; // Set the ID based on the EC_CODE parameter
           ecSection.classList.remove('hidden');
           const centerText = document.getElementById('center-text');
           if (centerText) {
@@ -123,6 +125,7 @@
         });
       }
     });
+
 
     async function fetchApiData(ecCode) {
       const apiUrl = 'http://192.168.1.106:3000/api/get-youtube-url/' + ecCode;
