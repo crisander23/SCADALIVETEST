@@ -59,42 +59,14 @@
   </section>
 
   <script>
-    // JavaScript to toggle visibility of the EC sections
-    // document.getElementById('toggleButton').addEventListener('click', function () {
-    //   var ECSections = document.querySelectorAll('.EC');
-    //   ECSections.forEach(function (section) {
-    //     section.classList.toggle('hidden');
-    //   });
-    //   var centerText = document.getElementById('center-text');
-    //   centerText.classList.toggle('hidden');
-    // });
-
-    // Function to set the YouTube video source dynamically
-    // function setYouTubeSource(videoId) {
-    //   var youtubeIframe = document.getElementById('youtubeIframe');
-    //   if (youtubeIframe) {
-    //     youtubeIframe.src = youtubeUrl;
-    //   }
-    // }
-    // // Check if the URL contains the anchor for any EC section
-    // window.addEventListener('DOMContentLoaded', function () {
-    //   var hash = window.location.hash;
-    //   if (hash && hash.startsWith('#')) {
-    //     var ECSection = document.getElementById(hash.substring(1));
-    //     if (ECSection) {
-    //       ECSection.classList.remove('hidden');
-    //       var centerText = document.getElementById('center-text');
-    //       centerText.classList.add('hidden');
-    //     }
-    //   }
-    // });
-
     window.addEventListener('DOMContentLoaded', function () {
       const urlParams = new URLSearchParams(window.location.search);
-      const ecCode = urlParams.get('EC_CODE');
+      let ecCode = urlParams.get('EC_CODE');
+      console.log('Initial EC_CODE:', ecCode);
 
       if (ecCode) {
-        const ecSection = document.getElementById(ecCode);
+        console.log('EC_CODE changed to:', ecCode);
+        const ecSection = document.getElementById('dynamicContent');
         if (ecSection) {
           ecSection.id = ecCode; // Set the ID based on the EC_CODE parameter
           ecSection.classList.remove('hidden');
@@ -107,6 +79,8 @@
         } else {
           console.error('Element with ID:', ecCode, 'not found');
         }
+      } else {
+        console.error('EC_CODE parameter not found in the URL');
       }
 
       const toggleButton = document.getElementById('toggleButton');
@@ -139,6 +113,7 @@
         let youtubeUrl;
         if (data && data.YOUTUBE_URL) {
           youtubeUrl = data.YOUTUBE_URL;
+          console.log('YouTube URL:', youtubeUrl);
         } else {
           console.warn('API response does not contain "YOUTUBE_URL" property');
         }
