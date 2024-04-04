@@ -1,147 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCADA LIVE MONITORING</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: black;
-      /* Set background color to black */
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BENECO</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
 
-    #center-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      font-size: 24px;
-      color: white;
-      /* Set text color to white */
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .hide-button {
-      display: none;
-    }
-  </style>
-
+  .owncast-wrapper {
+    position: relative;
+    width: 100vw; /* 100% viewport width */
+    height: 100vh; /* 100% viewport height */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 9999;
+    pointer-events: none; /* Allows click-through to iframe */
+  }
+  
+  /* Hide OwnCast logo watermark */
+  .owncast-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    opacity: 0.7; /* Adjust opacity as needed */
+    z-index: 10000;
+  }
+</style>
+<script>
+  document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
 </head>
-
 <body>
-  <!-- Visible button at the top -->
-  <a href="#CEBECOIII">
-    <button id="toggleButton" class="hide-button">Go to CEBECO III</button>
-  </a>
-  <!-- Text centered on the main page -->
-  <div id="center-text">
-    NO EC SELECTED
-  </div>
-
-  <!-- Main section for dynamically changing content -->
-  <section id="dynamicContent" class="hidden">
-    <div class="youtube-wrapper">
-      <div class="overlay"></div>
-      <iframe id="youtubeIframe" style="position:absolute; top:0; left:0; width:100%; height:100%;"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-
-  <script>
-    window.addEventListener('DOMContentLoaded', function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      let ecCode = urlParams.get('EC_CODE');
-      //console.log('Initial EC_CODE:', ecCode);
-
-      if (ecCode) {
-        //console.log('EC_CODE changed to:', ecCode);
-        const ecSection = document.getElementById('dynamicContent');
-        if (ecSection) {
-          ecSection.id = ecCode; // Set the ID based on the EC_CODE parameter
-          ecSection.classList.remove('hidden');
-          const centerText = document.getElementById('center-text');
-          if (centerText) {
-            centerText.classList.add('hidden');
-          }
-          // Call API endpoint with EC_CODE
-          fetchApiData(ecCode);
-        } else {
-          console.error('Element with ID:', ecCode, 'not found');
-        }
-      } else {
-        console.error('EC_CODE parameter not found in the URL');
-      }
-
-      const toggleButton = document.getElementById('toggleButton');
-      if (toggleButton) {
-        toggleButton.addEventListener('click', function () {
-          const targetSection = document.getElementById(ecCode); // Assuming element ID matches EC_CODE
-          if (targetSection) {
-            targetSection.classList.toggle('hidden');
-            const centerText = document.getElementById('center-text');
-            if (centerText) {
-              centerText.classList.toggle('hidden');
-            }
-          } else {
-            console.error('Element with ID:', ecCode, 'not found');
-          }
-        });
-      }
-    });
-
-    async function fetchApiData(ecCode) {
-      //console.log('Fetching data for EC_CODE:', ecCode);
-      const apiUrl = 'https://192.168.1.106:3000/api/get-youtube-url/' + ecCode;
-
-      try {
-        //console.log('Making API request to:', apiUrl);
-        const response = await fetch(apiUrl);
-        //console.log('API response received:', response);
-
-        const data = await response.json();
-        //console.log('API Response:', data);
-        //console.log('Data type:', typeof data);
-
-        // Check if data is an array and not empty
-        if (Array.isArray(data) && data.length > 0) {
-          // Assuming the first element of the array contains the desired data
-          const firstItem = data[0];
-
-          // Check if YOUTUBE_URL property exists in the first item
-          if (firstItem.hasOwnProperty('YOUTUBE_URL')) {
-            const youtubeUrl = firstItem.YOUTUBE_URL;
-            //console.log('YouTube URL:', youtubeUrl);
-
-            // Use the youtubeUrl variable here (e.g., display the YouTube video)
-            //console.log('Setting YouTube iframe src:', youtubeUrl);
-            const youtubeIframe = document.getElementById('youtubeIframe');
-            if (youtubeIframe) {
-              youtubeIframe.src = youtubeUrl;
-            } else {
-              console.warn('YouTube iframe element not found');
-            }
-          } else {
-            console.warn('YOUTUBE_URL property not found in API response');
-          }
-        } else {
-          console.warn('Empty or invalid API response');
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-  </script>
+<div class="owncast-wrapper">
+  <div class="overlay"></div>
+  <iframe
+  src="http://192.168.1.163:8080/embed/video"
+  title="Owncast"
+  height="350px" width="550px"
+  referrerpolicy="origin"
+  allowfullscreen>
+</iframe>
+</div>
 </body>
-
 </html>
