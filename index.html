@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <script>
-        window.location.href = "SCADALIVE.HTML";
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BENECO</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .owncast-wrapper {
+    position: relative;
+    width: 100vw; /* 100% viewport width */
+    height: 100vh; /* 100% viewport height */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 9999;
+    pointer-events: none; /* Allows click-through to iframe */
+  }
+  
+  /* Hide OwnCast logo watermark */
+  .owncast-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    opacity: 0.7; /* Adjust opacity as needed */
+    z-index: 10000;
+  }
+</style>
+<script>
+  document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
 </head>
 <body>
-    <p>If you are not redirected automatically, <a href="SCADALIVE.HTML">click here</a>.</p>
+<div class="owncast-wrapper">
+  <div class="overlay"></div>
+<iframe
+  src="http://192.168.1.163:8080/embed/video"
+  title="Owncast"
+  height="1280px" width="720px"
+  referrerpolicy="origin"
+  allowfullscreen>
+</iframe>
+</div>
 </body>
 </html>
