@@ -3,42 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+    <title>Whereby Meeting</title>
 </head>
 <body>
-
-<!-- Embed Owncast livestream -->
-<iframe id="livestreamFrame" src="https://watch.owncast.online/embed/video/" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
-
-<script>
-    // Get the iframe element
-    var iframe = document.getElementById("livestreamFrame");
-
-    // Function to make the iframe fullscreen
-    function makeFullScreen() {
-        if (iframe.requestFullscreen) {
-            iframe.requestFullscreen();
-        } else if (iframe.mozRequestFullScreen) { /* Firefox */
-            iframe.mozRequestFullScreen();
-        } else if (iframe.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-            iframe.webkitRequestFullscreen();
-        } else if (iframe.msRequestFullscreen) { /* IE/Edge */
-            iframe.msRequestFullscreen();
-        }
-    }
-
-    // Call the function to make the iframe fullscreen
-    makeFullScreen();
-</script>
-
+    <iframe src="https://whereby.com/testneaonedoc" style="width: 100%; height: 100vh; border: none;"></iframe>
 </body>
 </html>
