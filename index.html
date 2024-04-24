@@ -1,61 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BENECO</title>
-<style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
-  .owncast-wrapper {
-    position: relative;
-    width: 100vw; /* 100% viewport width */
-    height: 100vh; /* 100% viewport height */
-  }
-  
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    z-index: 9999;
-    pointer-events: none; /* Allows click-through to iframe */
-  }
-  
-  /* Hide OwnCast logo watermark */
-  .owncast-wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-    opacity: 0.7; /* Adjust opacity as needed */
-    z-index: 10000;
-  }
-</style>
-<script>
-  document.addEventListener('contextmenu', event => event.preventDefault());
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-<div class="owncast-wrapper">
-  <div class="overlay"></div>
-<iframe
-  src="https://watch.owncast.online/embed/video/"
-  title="Owncast"
-  height="1280px" width="720px"
-  referrerpolicy="origin"
-  allowfullscreen>
-</iframe>
-</div>
+
+<!-- Embed Owncast livestream -->
+<iframe id="livestreamFrame" src="https://watch.owncast.online/embed/video/" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
+
+<script>
+    // Get the iframe element
+    var iframe = document.getElementById("livestreamFrame");
+
+    // Function to make the iframe fullscreen
+    function makeFullScreen() {
+        if (iframe.requestFullscreen) {
+            iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) { /* Firefox */
+            iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+            iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) { /* IE/Edge */
+            iframe.msRequestFullscreen();
+        }
+    }
+
+    // Call the function to make the iframe fullscreen
+    makeFullScreen();
+</script>
 
 </body>
 </html>
